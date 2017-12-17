@@ -17,21 +17,46 @@ public class Realm {
 	public volatile LinkedList<Item> boundaries;
 	public volatile HashMap<BoundingBox, Item> hmitems;
 	
+	public volatile LinkedList<Item> itemsToAdd;
+	public volatile LinkedList<Item> itemsToRemove;
+	
 	public Realm() {
+		itemsToAdd = new LinkedList<Item>();
+		itemsToRemove = new LinkedList<Item>();
 		items = new LinkedList<Item>();
 		boundaries = new LinkedList<Item>();
 		actors = new LinkedList<Actor>();
 		hmitems = new HashMap<BoundingBox, Item>();
 	}
 	
-	public void add(Item i) {
+	public void add() {
+		while(!itemsToAdd.isEmpty()) {
+			this.add(itemsToAdd.pop());
+		}
+	}
+	
+	public void remove() {
+		while(!itemsToRemove.isEmpty()) {
+			this.remove(itemsToRemove.pop());
+		}
+	}
+	
+	public void register(Item i) {
+		itemsToAdd.add(i);
+	}
+	
+	public void deregister(Item i) {
+		itemsToRemove.add(i);
+	}
+	
+	private void add(Item i) {
 		items.add(i);
 		if(i instanceof Actor) actors.add((Actor) i);
 		if(i.canCollide) boundaries.add(i);
 		hmitems.put(i.bbox, i);
 	}
 	
-	public void remove(Item i) {
+	private void remove(Item i) {
 		items.remove(i);
 		if(i instanceof Actor) actors.remove((Actor) i);
 		if(i.canCollide) boundaries.remove(i);
@@ -39,14 +64,30 @@ public class Realm {
 	}
 	
 	public boolean collides(BoundingBox b) {
-		ListIterator<Item> listIterator = boundaries.listIterator();
-		while (listIterator.hasNext()) {
-			Item i = listIterator.next();
-			if(i.bbox.collides(b)) {
-				return true;
-			}
-		}
-		return false;
+		Item i = hmitems.get(b);
+		return i != null && i.canCollide;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

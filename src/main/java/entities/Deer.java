@@ -10,7 +10,10 @@ public class Deer extends WanderEntity {
 	
 	public Deer(Point p) {
 		image = BMPImages.deer;
-		bbox = new BoundingBox(p.x, p.y, 20, 20);
+		bbox = new BoundingBox(20, 20);
+		bbox.set(p);
+		movementStartTime = System.nanoTime();
+		movementTimeSpeed = 30000000L;
 	}
 	
 	@Override

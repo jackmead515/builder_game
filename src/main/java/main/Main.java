@@ -4,9 +4,13 @@ import java.awt.Point;
 import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 
+import buildings.Market_Stall;
 import entities.Deer;
+import entities.Merchant;
+import entities.Traveler;
 import items.Actor;
 import items.Item;
+import sprites.Explosion;
 import util.Randomizer;
 
 public class Main {
@@ -30,18 +34,32 @@ public class Main {
 		
 		realm = new Realm();
 		
+		Market_Stall mks = new Market_Stall(new Point(1000, 200));
+		realm.register(mks);
+		Merchant m = new Merchant(new Point(985, 210));
+		Main.realm.register(m);
+		
+		Traveler tr = new Traveler(new Point(1000, 100));
+		realm.register(tr);
+		
 		for(int i = 0; i < 20; i++) {
-			Deer deer = new Deer(new Point(i*25, i*25));
-			realm.add(deer);
+			Traveler deer = new Traveler(new Point(i*25, i*25));
+			realm.register(deer);
 		}
-		for(int i = 0; i < 20; i++) {
+		/*for(int i = 0; i < 20; i++) {
 			Deer deer = new Deer(new Point(i*25 + 25, i*25));
-			realm.add(deer);
+			realm.register(deer);
 		}
 		for(int i = 0; i < 20; i++) {
 			Deer deer = new Deer(new Point(i*25 + 50, i*25));
-			realm.add(deer);
-		}
+			realm.register(deer);
+		}*/
+		
+		/*Deer deer = new Deer(new Point(500, 500));
+		realm.register(deer);
+		
+		Explosion ex = new Explosion(new Point(500, 500));
+		realm.register(ex);*/
 
 		Thread t = new Thread(new Runnable() {
 			public void run() {
@@ -62,6 +80,7 @@ public class Main {
 	}
 
 	private static void update(double delta, long time) {
+		realm.add(); realm.remove();
 		ListIterator<Actor> listIterator = realm.actors.listIterator();
 		while (listIterator.hasNext()) {
 			listIterator.next().act(delta, time);

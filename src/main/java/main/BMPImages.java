@@ -83,6 +83,20 @@ public class BMPImages {
 	public static BufferedImage rune;
 	public static BufferedImage spell_table;
 	public static BufferedImage bag;
+	public static BufferedImage explosion_1_1;
+	public static BufferedImage explosion_1_2;
+	public static BufferedImage explosion_1_3;
+	public static BufferedImage explosion_1_4;
+	public static BufferedImage explosion_1_5;
+	public static BufferedImage explosion_1_6;
+	public static BufferedImage explosion_1_7;
+	public static BufferedImage traveler_1;
+	public static BufferedImage traveler_2;
+	public static BufferedImage market_stall;
+	public static BufferedImage coins_1;
+	public static BufferedImage coins_2;
+	public static BufferedImage coins_3;
+	
 	
 	public static void load() {
 		

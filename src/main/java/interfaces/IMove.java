@@ -1,9 +1,7 @@
 package interfaces;
 
-public interface ISimpleAI {
+public interface IMove {
 	
 	public void move(double delta, long time);
-	
-	public void setMove(boolean move);
 
 }

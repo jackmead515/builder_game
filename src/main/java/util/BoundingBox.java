@@ -53,8 +53,7 @@ public class BoundingBox extends Rectangle {
 
         BoundingBox o = (BoundingBox) obj;
         
-        return o.x == this.x && o.y == this.y && 
-        	o.width == this.width && o.height == this.height;
+        return this.collides(o);
     }
 
 }

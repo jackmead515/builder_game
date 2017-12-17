@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
 		
 		drawBackground(g2);
 		
-		drawGrid(g2);
+		//drawGrid(g2);
 		
 		drawItems(g2);
 		
@@ -47,10 +47,10 @@ public class GamePanel extends JPanel {
 		while (listIterator.hasNext()) {
 			Item i = listIterator.next();
 			i.draw(g2, this);
-			g2.setColor(new Color(0, 255, 0));
-			g2.drawRect(i.bbox.x, i.bbox.y, i.bbox.width, i.bbox.height);
-			g2.setColor(new Color(255, 0, 0));
-			g2.drawRect(i.bbox.center.x, i.bbox.center.y, 2, 2);
+			//g2.setColor(new Color(0, 255, 0));
+			//g2.drawRect(i.bbox.x, i.bbox.y, i.bbox.width, i.bbox.height);
+			//g2.setColor(new Color(255, 0, 0));
+			//g2.drawRect(i.bbox.center.x, i.bbox.center.y, 2, 2);
 		}
 	}
 	

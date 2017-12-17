@@ -25,8 +25,8 @@ public class Vector2D {
 	public void setRandomHeading(int bx, int by, int pathLength) {
 		int degrees = Randomizer.random(0, 360);
 		double angle = Math.toRadians(degrees);
-		int ex = (int) (Math.cos(angle) * pathLength);
-		int ey = (int) (Math.sin(angle) * pathLength);
+		int ex = (int) (Math.cos(angle) * pathLength) + bx;
+		int ey = (int) (Math.sin(angle) * pathLength) + by;
 		points.clear();
 		this.setHeading(bx, by, ex, ey);
 	}
